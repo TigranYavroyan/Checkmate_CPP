@@ -2,6 +2,7 @@
 #include "Piece.hpp"
 #include "InputSystem.hpp"
 #include <vector>
+#include <string>
 using std::vector;
 
 class Checkboard {
@@ -14,6 +15,7 @@ public:
     void print_rest() const;
     bool get_checkmate() const;
     bool get_stalemate() const;
+    std::string get_board_data() const;
 private:
     InputSystem input_system;
     vector <Piece*> pieces;

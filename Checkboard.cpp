@@ -583,3 +583,38 @@ void Checkboard::_pawn_to_queen (int index) { // if the king is under check, it 
     pawn_to_queen = true;
     pieces[index]->setType(being);
 }
+
+static char get_char_by_piece(Type piece_type, Color color)
+{
+    switch (piece_type)
+    {
+        case PAWN:
+            return (color == WHITE) ? 'P' : 'p';
+        case KNIGHT:
+            return (color == WHITE) ? 'K' : 'k';
+        case BISHOP:
+            return (color == WHITE) ? 'B' : 'b';
+        case ROCK:
+            return (color == WHITE) ? 'N' : 'n';
+        case QUEEN:
+            return (color == WHITE) ? 'Q' : 'q';
+        case KING:
+            return (color == WHITE) ? 'K' : 'k';
+    }
+    return '\0';
+}
+
+std::string Checkboard::get_board_data() const {
+    std::string board_data;
+    int size = pieces.size();
+    for (int i = 0; i < size; ++i) {
+        if (pieces[i]) {
+            board_data.push_back(get_char_by_piece(pieces[i]->getType(), pieces[i]->getColor()));
+            board_data.push_back(pieces[i]->getRow() + '0');
+            board_data.push_back(pieces[i]->getCol() + '0');
+            if (i < size - 1)
+                board_data.push_back(',');
+        }
+    }
+    return board_data;
+}

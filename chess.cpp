@@ -4,7 +4,7 @@
 
 int main() {
     Checkboard check_board;
-    while(1){
+    while(1) {
         system("clear");
         check_board.printBoard();
         check_board.play();
